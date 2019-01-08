@@ -2,6 +2,17 @@
 <p>
 	<%= @article.text %>
 </p>
+	<br/>
+	<% @article.comments.each do |comment| %>
+		<h5>
+			<i><%= comment.author %> said:</i>
+		</h5>
+		<br/>
+		<p>
+			<%= comment.body %>
+		</p>
+		<hr/>
+	<% end %>
 
 <%= form_for([@article, @article.comments.build]) do |f| %>
 <!-- 	<% if @article && @article.errors.any? %>
@@ -28,15 +39,4 @@
 		<%= f.submit %>
 	</p>
 
-	<br/>
-	<% @article.comments.each do |comment| %>
-		<h5>
-			<%= comment.author %>
-		</h5>
-		<br/>
-		<p>
-			<%= comment.body %>
-		</p>
-		<hr/>
-	<% end %>
 <% end %>
